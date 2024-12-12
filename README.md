@@ -1,6 +1,6 @@
-- 👋 Hi, I’m Adel. You can call me anything you want XOXO
+- 👋 Hi, I’m Je. 
 - 👀 I’m interested in programming obviously cuz I want to be a Data Analyst.
-- 🌱 I’m currently learning Java, Basic Python, Visual Basic
+- 🌱 I’m currently learning Java, Basic Python, and lil bit learn of Visual Basic
 
 
 <!---
