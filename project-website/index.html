@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NegaraKu - Platform Pembelajaran Kenegaraan</title>
+    <style>
+        :root {
+            --primary-color: #d71149;
+            --secondary-color: #ffffff;
+            --accent-color: #0a0a85;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --dark-gray: #666666;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #f8d7d7;
+            transform: scale(1.05);
+        }
+        
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: #0a0a65;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #000000;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1600x800');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .features, .courses, .testimonials {
+            padding: 4rem 0;
+        }
+        
+        .section {
+            display: inline-block;
+            width: 23%;
+            vertical-align: top;
+            margin: 1%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid, .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card, .course-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover, .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3, .course-content h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .feature-card p, .course-content p {
+            color: var(--dark-gray);
+        }
+        
+        .course-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .course-content img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .cta {
+            padding: 4rem 0;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta p {
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #888;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        form button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        form button:hover {
+            background-color: #b00d3a;
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        
+            .nav-links {
+                margin-top: 1rem;
+                width: 100%;
+                flex-direction: column;
+            }
+        
+            .nav-links li {
+                margin: 0;
+                margin-bottom: 0.5rem;
+            }
+        
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Logo NegaraKu">
+                    <span>NegaraKu</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#kursus">Kursus</a></li>
+                    <li><a href="#fitur">Fitur</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                    <li><a href="#" class="btn" id="login-btn">Masuk</a></li>
+                    <li><a href="#" class="btn" id="register-btn">Daftar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="beranda">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Belajar Kenegaraan dengan Cara yang Menyenangkan</h1>
+                <p>Platform pembelajaran interaktif untuk memahami konsep-konsep dasar kenegaraan dengan mudah dan menarik</p>
+                <a href="#kursus" class="btn">Mulai Belajar</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="fitur">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fitur Unggulan</h2>
+                <p>Nikmati berbagai fitur interaktif yang memudahkan Anda dalam memahami konsep kenegaraan</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Modul Pembelajaran Bertahap</h3>
+                    <p>Materi disusun secara bertahap dari konsep dasar hingga lanjutan dengan bahasa yang mudah dipahami</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Pembelajaran Interaktif</h3>
+                    <p>Infografis, video animasi, dan simulasi yang membuat belajar kenegaraan lebih menarik</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Evaluasi Beragam</h3>
+                    <p>Kuis, games edukatif, dan proyek mini untuk mengukur pemahaman Anda</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Kamus Istilah Kenegaraan</h3>
+                    <p>Daftar istilah kenegaraan beserta penjelasan sederhana</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Peta Interaktif</h3>
+                    <p>Peta dunia yang menunjukkan berbagai sistem pemerintahan di negara-negara berbeda</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Forum Diskusi</h3>
+                    <p>Diskusi tematik dengan moderasi aktif untuk berbagi pemahaman dan perspektif</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses" id="kursus">
+        <div class="container">
+            <div class="section-title">
+                <h2>Modul Pembelajaran</h2>
+                <p>Pilih modul pembelajaran sesuai dengan kebutuhan dan tingkat pemahaman Anda</p>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="course-content">
+                        <img src="images/logo pengenalan.jpeg">
+                        <h3>Pengenalan Dasar Negara</h3>
+                        <p>Mempelajari pengertian negara, syarat terbentuknya negara, dan bentuk-bentuk negara</p>
+                        <div class="course-meta">
+                            <span>5 Bab</span>
+                            <span>Pemula</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="course-content">
+                        <img src="images/sistem pemerintahan.jpeg">
+                        <h3>Sistem Pemerintahan</h3>
+                        <p>Mempelajari berbagai sistem pemerintahan seperti demokrasi, presidensial, parlementer, dan lainnya</p>
+                        <div class="course-meta">
+                            <span>7 Bab</span>
+                            <span>Menengah</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="course-content">
+                        <img src="images/konstitusi.jpg">
+                        <h3>Konstitusi dan Hukum Dasar</h3>
+                        <p>Mempelajari pengertian, fungsi, dan implementasi konstitusi dalam kehidupan bernegara</p>
+                        <div class="course-meta">
+                            <span>6 Bab</span>
+                            <span>Menengah</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="course-content">
+                        <img src="images/lembaga.jpeg">
+                        <h3>Lembaga-lembaga Negara</h3>
+                        <p>Mempelajari lembaga eksekutif, legislatif, yudikatif dan fungsinya</p>
+                        <div class="course-meta">
+                            <span>8 Bab</span>
+                            <span>Menengah</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x400');"></div>
+                    <div class="course-content">
+                        <img src="images/hDkw.jpeg">
+                        <h3>Hak dan Kewajiban Warga Negara</h3>
+                        <p>Mempelajari pemahaman dan implementasi hak dan kewajiban dalam kehidupan sehari-hari</p>
+                        <div class="course-meta">
+                            <span>5 Bab</span>
+                            <span>Pemula</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-image: url('https://via.placeholder.com/600x2400');"></div>
+                    <div class="course-content">
+                        <img src="images/kwn.jpeg">
+                        <h3>Kewarganegaraan dan Globalisasi</h3>
+                        <p>Mempelajari konsep kewarganegaraan dalam konteks global dan tantangannya</p>
+                        <div class="course-meta">
+                            <span>6 Bab</span>
+                            <span>Lanjutan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimoni Pengguna</h2>
+                <p>Apa kata mereka tentang pengalaman belajar di NegaraKu</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Platform ini sangat membantu saya memahami konsep-konsep dasar kenegaraan dengan cara yang menyenangkan. Animasi dan infografisnya benar-benar memudahkan proses belajar."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image" style="background-image: url('https://via.placeholder.com/50');"></div>
+                        <div class="author-info">
+                            <h4>Anisa Pratiwi</h4>
+                            <p>Mahasiswa Ilmu Politik</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Saya suka sekali dengan fitur kuis dan games edukatifnya. Membuat saya bersemangat untuk terus belajar tentang kenegaraan tanpa merasa bosan."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image" style="background-image: url('https://via.placeholder.com/50');"></div>
+                        <div class="author-info">
+                            <h4>Budi Santoso</h4>
+                            <p>Guru SMA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Forum diskusinya sangat aktif dan bermanfaat. Saya bisa berdiskusi dengan pengguna lain dan mendapatkan perspektif baru tentang isu-isu kenegaraan terkini."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image" style="background-image: url('https://via.placeholder.com/50');"></div>
+                        <div class="author-info">
+                            <h4>Deni Kurniawan</h4>
+                            <p>Pegawai Negeri</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Mulai Perjalanan Belajar Anda Sekarang</h2>
+            <p>Daftarkan diri Anda dan nikmati akses ke semua fitur pembelajaran interaktif tentang kenegaraan</p>
+            <a href="#" class="btn btn-secondary" id="cta-register-btn">Daftar Gratis</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-links">
+                    <h3>NegaraKu</h3>
+                    <ul>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#">Tim Pengajar</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Kursus</h3>
+                    <ul>
+                        <li><a href="#">Semua Kursus</a></li>
+                        <li><a href="#">Kursus Populer</a></li>
+                        <li><a href="#">Kursus Baru</a></li>
+                        <li><a href="#">Sertifikasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Bantuan</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Pusat Bantuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat dan Ketentuan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Ikuti Kami</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NegaraKu. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Login -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-login">&times;</span>
+            <h2>Masuk</h2>
+            <form id="login-form">
+                <div>
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div>
+                    <label for="login-password">Kata Sandi</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div>
+                    <button type="submit">Masuk</button>
+                </div>
+                <p style="text-align: center; margin-top: 1rem;">Belum punya akun? <a href="#" id="switch-to-register">Daftar sekarang</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Register -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-register">&times;</span>
+            <h2>Daftar</h2>
+            <form id="register-form">
+                <div>
+                    <label for="register-name">Nama Lengkap</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div>
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div>
+                    <label for="register-password">Kata Sandi</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div>
+                    <label for="register-confirm-password">Konfirmasi Kata Sandi</label>
+                    <input type="password" id="register-confirm-password" required>
+                </div>
+                <div>
+                    <button type="submit">Daftar</button>
+                </div>
+                <p style="text-align: center; margin-top: 1rem;">Sudah punya akun? <a href="#" id="switch-to-login">Masuk sekarang</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const ctaRegisterBtn = document.getElementById('cta-register-btn');
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const closeLogin = document.getElementById('close-login');
+        const closeRegister = document.getElementById('close-register');
+        const switchToRegister = document.getElementById('switch-to-register');
+        const switchToLogin = document.getElementById('switch-to-login');
+
+        // Open modals
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+        });
+
+        registerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'block';
+        });
+
+        ctaRegisterBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'block';
+        });
+
+        // Close modals
+        closeLogin.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+        });
+
+        closeRegister.addEventListener('click', function() {
+            registerModal.style.display = 'none';
+        });
+
+        // Switch between modals
+        switchToRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'block';
+        });
+
+        switchToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target == loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target == registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+
+        // Form submissions (just prevent default for now)
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Fitur login masih dalam pengembangan.');
+        });
+
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Fitur pendaftaran masih dalam pengembangan.');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
