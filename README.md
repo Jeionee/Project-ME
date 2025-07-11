@@ -1,6 +1,6 @@
 - 👋 Hi, I’m Adel. 
 - 👀 I’m a 4th year student of Information System at UPN Veteran Jawa Timur
-- 🌱 I’m currently learning Java Netbeans, basic programming like HTML CSS JS, Basic Python, and lil bit learn of Visual Basic
+- 🌱 I’m learning Java Netbeans, basic programming like HTML CSS JS, Basic Python, and lil bit learn of Visual Basic
 
 
 <!---
